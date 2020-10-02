@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use App\Models\Person;
+use App\Models\Genre;
 use DB;
 
-
-class PersonController extends Controller
+class GenreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,42 +16,33 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //$person = Person::all();
-
-
-        /* $response = [
-            'success'=>true,
-            'Message'=>'Lista de usuarios', 
-            'data'=>$person,
-            
-        ]; */
+        //
     }
 
-    public function getPerson(){
+    public function getGenre(){
         try {
-            $res = DB::table('person')
+            
+            $res = DB::table('cat_genre_movie')
             ->select(
-                'idperson','user','password','Name','Paternal','Maternal',
-                'Token'
+                'id_genre_movie','Genre'
             )
             ->get();
-
             $total = $res->count();
-            
+
             return [
                 'success'=>true,
                 'Message'=>'List Genre',
                 'total'=>$total,
                 'data'=>$res
             ];
+
         } catch (QueryException $e) {
-             return [
+            return [
                 'success' => false,
                 'errors' => $e->getMessage()
             ];
         }
     }
-
     /**
      * Show the form for creating a new resource.
      *

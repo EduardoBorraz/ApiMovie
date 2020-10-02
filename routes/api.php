@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\GenreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/person',[PersonController::class,'index']);
+Route::post('/person',[PersonController::class,'getPerson']);
 Route::post('/movie',[MovieController::class,'getMovie']);
+Route::post('/genre',[GenreController::class,'getGenre']);
