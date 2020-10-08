@@ -30,9 +30,9 @@ class PersonController extends Controller
 
     public function getPerson(){
         try {
-            $res = DB::table('person')
+            $res = DB::table('users')
             ->select(
-                'idperson','user','password','Name','Paternal','Maternal',
+                'id_user','email','password','name','Paternal','Maternal',
                 'Token'
             )
             ->get();
@@ -41,7 +41,7 @@ class PersonController extends Controller
             
             return [
                 'success'=>true,
-                'Message'=>'List Genre',
+                'Message'=>'List Users',
                 'total'=>$total,
                 'data'=>$res
             ];

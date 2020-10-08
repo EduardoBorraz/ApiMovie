@@ -28,16 +28,16 @@ class MovieController extends Controller
                 'movies.idmovies','movies.Title','movies.Director',
                 'movies.Country','movies.Qualification','movies.Year',
                 'movies.created_at','movies.updated_at',
-                'movies.id_users',
-                    'person.idperson as idB','person.user as userB',
-                    'person.password as passwordB',
-                    'person.Name as NameB','person.Paternal as PaternalB','person.Maternal as MaternalB','person.Token as TokenB',
+                'movies.id_user',
+                    'users.id_user as idB','users.email as userB',
+                    'users.password as passwordB',
+                    'users.name as NameB','users.Paternal as PaternalB','users.Maternal as MaternalB','users.Token as TokenB',
 
                 'movies.id_genre_movie',
                     'cat_genre_movie.id_genre_movie as idC',
                     'cat_genre_movie.Genre as GenreC',
             )
-            ->leftJoin('person','person.idperson','=','movies.id_users')
+            ->leftJoin('users','users.id_user','=','movies.id_user')
             ->leftJoin('cat_genre_movie',
             'cat_genre_movie.id_genre_movie','=','movies.id_genre_movie')
             ->get();
@@ -58,9 +58,9 @@ class MovieController extends Controller
                 'Country'=>$data->Country,
                 'Qualification'=>$data->Qualification,
                 'Year'=>$data->Year,
-                'idusers'=>[
-                    'idusers'=>$data->idB,
-                    'user'=>$data->userB,
+                'id_user'=>[
+                    'id_user'=>$data->idB,
+                    'email'=>$data->userB,
                     'password'=>$data->passwordB,
                     'Name'=>$data->NameB,
                     'Paternal'=>$data->PaternalB,
