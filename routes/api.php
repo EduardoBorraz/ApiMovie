@@ -22,8 +22,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', 'AuthController@login');
+Route::post('/register','AuthController@register');
+
 Route::group(['middleware' => 'jwt.auth'],function(){
     
+    //Route::post('/me', 'AuthController@getAuthenticatedUser');
     Route::post('/user','PersonController@getPerson');
     Route::post('/movie','MovieController@getMovie');
     Route::post('/genre','GenreController@getGenre');

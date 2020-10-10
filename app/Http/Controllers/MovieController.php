@@ -42,38 +42,40 @@ class MovieController extends Controller
             'cat_genre_movie.id_genre_movie','=','movies.id_genre_movie')
             ->get();
             
-            //dd($res);
             $total = $res->count();
+            
             $array_res = [];
             $temp = [];
             $data_temp = [];
 
             
            foreach($res as $data){
-            $temp = [
-               
+            $temp1 = [
                 'idmovies'=>$data->idmovies,
                 'Title'=>$data->Title,
                 'Director'=>$data->Director,
                 'Country'=>$data->Country,
                 'Qualification'=>$data->Qualification,
                 'Year'=>$data->Year,
-                'id_user'=>[
-                    'id_user'=>$data->idB,
-                    'email'=>$data->userB,
-                    'password'=>$data->passwordB,
-                    'Name'=>$data->NameB,
-                    'Paternal'=>$data->PaternalB,
-                    'Maternal'=>$data->MaternalB,
-                    'Token'=>$data->TokenB
-                ],
                 'id_genre_movie'=>[
                     'id_genre_movie'=>$data->idC,
                     'Gnere'=>$data->GenreC
                 ]
             ];
+            $temp2 = [
+                'id_user'=>$data->idB,
+                'email'=>$data->userB,
+                'Name'=>$data->NameB,
+                'Paternal'=>$data->PaternalB,
+                'Maternal'=>$data->MaternalB,
+                'Token'=>$data->TokenB
+            ];
+
+            $data_temp = [
+                'idMovie'=>$temp1,
+                'id_user'=>$temp2,
+            ];
             //dd($temp);
-            $data_temp = $temp;
             array_push($array_res,$data_temp);
            }
 

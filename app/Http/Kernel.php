@@ -62,8 +62,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-        'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class
+        'jwt.auth' => \App\Http\Middleware\JWT::class,
+        'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
 
     ];
 }
